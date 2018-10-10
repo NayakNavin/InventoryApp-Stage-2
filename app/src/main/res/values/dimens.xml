@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_view_height">33dp</dimen>
+    <dimen name="width_0dp">0dp</dimen>
+    <dimen name="width_100dp">100dp</dimen>
+
+    <!-- Margin around the floating action button in CatalogActivity -->
+    <dimen name="fab_margin">28dp</dimen>
+
+    <!-- Common margin value used throughout the app -->
+    <dimen name="activity_margin">16dp</dimen>
+
+    <!-- Margin around the image in EditorActivity -->
+    <dimen name="product_image_margin">4dp</dimen>
+
+    <!-- Margin around the transaction buttons (Order & Sell) -->
+    <dimen name="margin_16dp">16dp</dimen>
+
+    <!-- List view margin -->
+    <dimen name="list_view_margin">8dp</dimen>
+
+    <!-- Height of each list item -->
+    <dimen name="list_item_height">145dp</dimen>
+    <dimen name="margin_8dp">8dp</dimen>
+    <dimen name="height_99dp">99dp</dimen>
+    <dimen name="width_60dp">60dp</dimen>
+    <dimen name="height_50dp">50dp</dimen>
+</resources>

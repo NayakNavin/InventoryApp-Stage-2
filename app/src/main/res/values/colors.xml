@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#00ceb8</color>
+
+    <!-- Primary color for the editor -->
+    <color name="editorColorPrimary">#2D3640</color>
+
+    <!-- Primary dark color for the editor -->
+    <color name="editorColorPrimaryDark">#394450</color>
+
+    <!-- Color for the positive stock level -->
+    <color name="colorPositiveStock">#4CAF50</color>
+
+    <!-- Color for the empty stock level -->
+    <color name="colorEmptyStock">#F44336</color>
+</resources>
