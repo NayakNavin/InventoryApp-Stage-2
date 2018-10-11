@@ -19,23 +19,32 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.navinnayak.android.inventoryapp.data.ProductContract.ProductEntry;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class EditorActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     public static final int EXISTING_PRODUCT_LOADER = 0;
     private Uri mCurrentProductUri;
 
-    private EditText mNameEditText;
-    private EditText mPriceEditText;
-    private EditText mQuantityEditText;
-    private EditText mSupplierNameEditText;
-    private EditText mPhoneNumberEditText;
     private boolean mProductHasChanged = false;
     private boolean validProductData = true;
 
+    @BindView(R.id.product_name_edit_text)
+    EditText mNameEditText;
+    @BindView(R.id.product_price_edit_text)
+    TextView mPriceEditText;
+    @BindView(R.id.product_quantity_edit_text)
+    TextView mQuantityEditText;
+    @BindView(R.id.product_supplier_name)
+    TextView mSupplierNameEditText;
+    @BindView(R.id.product_supplier_phone_number_edit_text)
+    TextView mPhoneNumberEditText;
     /**
      * OnTouchListener that listens for any touch on a View.
      */
@@ -44,9 +53,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         public boolean onTouch(View view, MotionEvent motionEvent) {
             mProductHasChanged = true;
             Log.d("message", "onTouch");
-
             return false;
-
         }
     };
 
@@ -54,6 +61,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor);
+        ButterKnife.bind(this);
         Log.d("message", "onCreate");
 
         Intent intent = getIntent();
@@ -65,13 +73,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             setTitle(getString(R.string.editor_activity_title_edit_product));
             getSupportLoaderManager().initLoader(EXISTING_PRODUCT_LOADER, null, this);
         }
-
-        mNameEditText = findViewById(R.id.product_name_edit_text);
-        mPriceEditText = findViewById(R.id.product_price_edit_text);
-        mQuantityEditText = findViewById(R.id.product_quantity_edit_text);
-        mSupplierNameEditText = findViewById(R.id.product_supplier_name);
-        mPhoneNumberEditText = findViewById(R.id.product_supplier_phone_number_edit_text);
-
         mNameEditText.setOnTouchListener(mTouchListener);
         mPriceEditText.setOnTouchListener(mTouchListener);
         mQuantityEditText.setOnTouchListener(mTouchListener);
@@ -173,7 +174,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             } else {
                 Toast.makeText(this, getString(R.string.editor_insert_product_successful),
                         Toast.LENGTH_SHORT).show();
-
             }
         } else {
             int rowsAffected = getContentResolver().update(mCurrentProductUri, values, null, null);
@@ -186,7 +186,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             }
         }
     }
-
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {

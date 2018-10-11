@@ -21,28 +21,41 @@ import android.widget.Toast;
 
 import com.navinnayak.android.inventoryapp.data.ProductContract.ProductEntry;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import static com.navinnayak.android.inventoryapp.EditorActivity.EXISTING_PRODUCT_LOADER;
 
 public class DetailActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private Uri mCurrentProductUri;
 
-    private TextView mNameDetailTextView;
-    private TextView mPriceDetailTextView;
-    private TextView mQuantityDetailTextView;
-    private TextView mSupplierNameDetailTextView;
-    private TextView mPhoneNumberDetailTextView;
+    @BindView(R.id.detail_name_text_view)
+    TextView mNameDetailTextView;
+    @BindView(R.id.detail_price_text_view)
+    TextView mPriceDetailTextView;
+    @BindView(R.id.detail_quantity_text_view)
+    TextView mQuantityDetailTextView;
+    @BindView(R.id.detail_supplier_name_text_view)
+    TextView mSupplierNameDetailTextView;
+    @BindView(R.id.detail_supplier_phone_number_text_view)
+    TextView mPhoneNumberDetailTextView;
+
+    @BindView(R.id.increase_button)
+    Button productIncreaseButton;
+    @BindView(R.id.decrease_button)
+    Button productDecreaseButton;
+    @BindView(R.id.delete_button)
+    Button productDeleteButton;
+
+    @BindView(R.id.order_button)
+    ImageView orderButtonImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-
-        mNameDetailTextView = findViewById(R.id.detail_name_text_view);
-        mPriceDetailTextView = findViewById(R.id.detail_price_text_view);
-        mQuantityDetailTextView = findViewById(R.id.detail_quantity_text_view);
-        mSupplierNameDetailTextView = findViewById(R.id.detail_supplier_name_text_view);
-        mPhoneNumberDetailTextView = findViewById(R.id.detail_supplier_phone_number_text_view);
+        ButterKnife.bind(this);
 
         Intent intent = getIntent();
         mCurrentProductUri = intent.getData();
@@ -52,7 +65,6 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
             getSupportLoaderManager().initLoader(EXISTING_PRODUCT_LOADER, null, this);
         }
         Log.d("message", "onCreate ViewActivity");
-
     }
 
     @Override
@@ -80,7 +92,6 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
         }
         if (cursor.moveToFirst()) {
             final int idColumnIndex = cursor.getColumnIndex(ProductEntry._ID);
-
             int nameColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_NAME);
             int priceColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRICE);
             int quantityColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_QUANTITY);
@@ -95,9 +106,7 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
 
             mNameDetailTextView.setText(currentName);
             mSupplierNameDetailTextView.setText(currentSupplierName);
-
             mPriceDetailTextView.setText(this.getString(R.string.currency) + String.format("%,d", currentPrice));
-
             mQuantityDetailTextView.setText(Integer.toString(currentQuantity));
             mPhoneNumberDetailTextView.setText(Integer.toString(currentSupplierPhone));
 
@@ -108,7 +117,6 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
                 mQuantityDetailTextView.setTextColor(ContextCompat.getColor(this, R.color.colorPositiveStock));
             }
 
-            Button productDecreaseButton = findViewById(R.id.decrease_button);
             productDecreaseButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -116,7 +124,6 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
                 }
             });
 
-            Button productIncreaseButton = findViewById(R.id.increase_button);
             productIncreaseButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -124,7 +131,6 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
                 }
             });
 
-            Button productDeleteButton = findViewById(R.id.delete_button);
             productDeleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -132,7 +138,6 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
                 }
             });
 
-            ImageView orderButtonImageView = findViewById(R.id.order_button);
             orderButtonImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
