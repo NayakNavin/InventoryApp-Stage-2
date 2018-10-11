@@ -100,9 +100,6 @@
     <!-- Toast message in editor when attempt to save a product with an empty stock level [CHAR LIMIT=NONE] -->
     <string name="editor_product_requires_positive_stock_level">Product requires a positive stock level !</string>
 
-    <!-- Toast message in editor when attempt to save a product without an image [CHAR LIMIT=NONE] -->
-    <string name="editor_product_requires_image">Product requires an image !</string>
-
     <!-- Toast message in editor when new product has failed to be inserted [CHAR LIMIT=NONE] -->
     <string name="editor_insert_product_failed">Error with saving product</string>
 
@@ -120,4 +117,15 @@
 
     <!-- Toast message in editor when attempt to delete all product from database has failed [CHAR LIMIT=NONE] -->
     <string name="catalog_delete_all_products_failed">Error with deleting the products</string>
+    <string name="product_details">Product Details</string>
+
+    <!-- activity_view -->
+    <string name="quantity_change_msg">Quantity updated and saved</string>
+    <string name="quantity_finish_msg">Product is out of stock, buy another Product</string>
+    <string name="detail_activity">Details Activity</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="phone_image">phone image</string>
+    <string name="empty_view_image">empty view image</string>
+
 </resources>

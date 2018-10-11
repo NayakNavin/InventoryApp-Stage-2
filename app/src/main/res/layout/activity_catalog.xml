@@ -16,6 +16,7 @@
             android:id="@+id/empty_view_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/empty_view_image"
             android:src="@drawable/empty_white_box" />
 
         <TextView
@@ -23,8 +24,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_16dp"
-            android:layout_marginLeft="96dp"
-            android:layout_marginRight="96dp"
+            android:layout_marginLeft="@dimen/margin_96dp"
+            android:layout_marginRight="@dimen/margin_96dp"
             android:text="@string/empty_view_subtitle_text" />
 
     </LinearLayout>

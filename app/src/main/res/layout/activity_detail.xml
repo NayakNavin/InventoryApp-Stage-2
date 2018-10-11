@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_margin"
+    tools:context=".DetailActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/margin_20dp"
+        android:text="@string/product_details"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_size_22sp"
+        android:textStyle="bold" />
+
+    <LinearLayout style="@style/LinearLayoutStyle">
+
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="@string/product_name" />
+
+        <RelativeLayout style="@style/RelativeLayoutStyle">
+
+            <TextView
+                android:id="@+id/detail_name_text_view"
+                style="@style/DetailFieldStyle"
+                tools:text="@tools:sample/cities" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout style="@style/LinearLayoutStyle">
+
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="@string/price" />
+
+        <RelativeLayout style="@style/RelativeLayoutStyle">
+
+            <TextView
+                android:id="@+id/detail_price_text_view"
+                style="@style/DetailFieldStyle"
+                tools:text="@tools:sample/us_zipcodes" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout style="@style/LinearLayoutStyle">
+
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="@string/quantity" />
+
+        <RelativeLayout style="@style/RelativeLayoutStyle">
+
+            <Button
+                android:id="@+id/decrease_button"
+                style="@style/QuantityButtonStyle"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="@dimen/margin_20dp"
+                android:layout_marginLeft="@dimen/margin_20dp"
+                android:layout_marginEnd="@dimen/margin_16dp"
+                android:layout_marginRight="@dimen/margin_16dp"
+                android:layout_toStartOf="@+id/detail_quantity_text_view"
+                android:layout_toLeftOf="@+id/detail_quantity_text_view"
+                android:background="@color/colorEmptyStock"
+                android:text="@string/minus" />
+
+            <TextView
+                android:id="@+id/detail_quantity_text_view"
+                android:layout_width="@dimen/width_50dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center_horizontal"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="bold"
+                tools:text="@tools:sample/date/day_of_week" />
+
+            <Button
+                android:id="@+id/increase_button"
+                style="@style/QuantityButtonStyle"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:layout_marginLeft="@dimen/margin_16dp"
+                android:layout_marginEnd="@dimen/margin_20dp"
+                android:layout_marginRight="@dimen/margin_20dp"
+                android:layout_toEndOf="@+id/detail_quantity_text_view"
+                android:layout_toRightOf="@+id/detail_quantity_text_view"
+                android:background="@color/colorPositiveStock"
+                android:text="@string/plus" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout style="@style/LinearLayoutStyle">
+
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="@string/supplier_name" />
+
+        <RelativeLayout style="@style/RelativeLayoutStyle">
+
+            <TextView
+                android:id="@+id/detail_supplier_name_text_view"
+                style="@style/DetailFieldStyle"
+                tools:text="@tools:sample/cities" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout style="@style/LinearLayoutStyle">
+
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="@string/supplier_phone_number" />
+
+        <RelativeLayout style="@style/RelativeLayoutStyle">
+
+            <TextView
+                android:id="@+id/detail_supplier_phone_number_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/order_button"
+                android:layout_toLeftOf="@id/order_button"
+                android:fontFamily="sans-serif-light"
+                android:gravity="end"
+                android:paddingEnd="@dimen/margin_16dp"
+                android:paddingRight="@dimen/margin_16dp"
+                android:textAppearance="?android:textAppearanceLarge"
+                tools:text="@tools:sample/us_phones" />
+
+            <ImageView
+                android:id="@+id/order_button"
+                android:layout_width="@dimen/width_50dp"
+                android:layout_height="@dimen/height_40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="start"
+                android:layout_marginBottom="@dimen/margin_16dp"
+                android:contentDescription="@string/phone_image"
+                android:focusable="false"
+                android:src="@drawable/icons8_phone_96" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:text="@string/delete"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_size_18sp" />
+</LinearLayout>

@@ -36,10 +36,10 @@ public class ProductDbHelper extends SQLiteOpenHelper {
         String SQL_CREATE_PRODUCTS_TABLE = "CREATE TABLE " + ProductEntry.TABLE_NAME + " ("
                 + ProductEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + ProductEntry.COLUMN_PRODUCT_NAME + " TEXT NOT NULL, "
-                + ProductEntry.COLUMN_PRICE + " INTEGER, "
-                + ProductEntry.COLUMN_QUANTITY + " INTEGER, "
+                + ProductEntry.COLUMN_PRICE + " INTEGER NOT NULL, "
+                + ProductEntry.COLUMN_QUANTITY + " INTEGER NOT NULL, "
                 + ProductEntry.COLUMN_SUPPLIER_NAME + " TEXT NOT NULL, "
-                + ProductEntry.COLUMN_PHONE_NUMBER + " INTEGER);";
+                + ProductEntry.COLUMN_PHONE_NUMBER + " INTEGER NOT NULL);";
         // Execute the SQL statement
         db.execSQL(SQL_CREATE_PRODUCTS_TABLE);
     }
@@ -49,6 +49,6 @@ public class ProductDbHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // The database is still at version 1, so there's nothing to do be done here.
+        db.execSQL("DROP TABLE IF EXISTS " + ProductEntry.TABLE_NAME);
     }
 }

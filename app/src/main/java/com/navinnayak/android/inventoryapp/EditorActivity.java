@@ -13,6 +13,7 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -24,7 +25,7 @@ import com.navinnayak.android.inventoryapp.data.ProductContract.ProductEntry;
 
 public class EditorActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    private static final int EXISTING_PRODUCT_LOADER = 0;
+    public static final int EXISTING_PRODUCT_LOADER = 0;
     private Uri mCurrentProductUri;
 
     private EditText mNameEditText;
@@ -33,6 +34,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     private EditText mSupplierNameEditText;
     private EditText mPhoneNumberEditText;
     private boolean mProductHasChanged = false;
+    private boolean validProductData = true;
 
     /**
      * OnTouchListener that listens for any touch on a View.
@@ -41,7 +43,10 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
             mProductHasChanged = true;
+            Log.d("message", "onTouch");
+
             return false;
+
         }
     };
 
@@ -49,6 +54,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor);
+        Log.d("message", "onCreate");
 
         Intent intent = getIntent();
         mCurrentProductUri = intent.getData();
@@ -96,6 +102,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         } else {
             Toast.makeText(this, getString(R.string.editor_product_requires_name),
                     Toast.LENGTH_SHORT).show();
+            validProductData = false;
             return;
         }
 
@@ -105,6 +112,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         } else {
             Toast.makeText(this, getString(R.string.editor_product_requires_supplier_name),
                     Toast.LENGTH_SHORT).show();
+            validProductData = false;
+
             return;
         }
 
@@ -118,6 +127,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         } else if (Integer.parseInt(supplierPhoneNumberString) == 0) {
             Toast.makeText(this, getString(R.string.editor_product_invalid_supplier_phone_number),
                     Toast.LENGTH_SHORT).show();
+            validProductData = false;
+
             return;
         }
 
@@ -131,6 +142,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         } else if (Integer.parseInt(priceString) == 0) {
             Toast.makeText(this, getString(R.string.editor_product_requires_positive_price),
                     Toast.LENGTH_SHORT).show();
+            validProductData = false;
+
             return;
         }
 
@@ -144,11 +157,14 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         } else if (Integer.parseInt(quantityString) == 0) {
             Toast.makeText(this, getString(R.string.editor_product_requires_positive_stock_level),
                     Toast.LENGTH_SHORT).show();
+            validProductData = false;
+
             return;
         }
 
         // If all the checks on the input values are passed,
         // then the data for the product are valid.
+        validProductData = true;
         if (mCurrentProductUri == null) {
             Uri newUri = getContentResolver().insert(ProductEntry.CONTENT_URI, values);
             if (newUri == null) {
@@ -157,6 +173,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             } else {
                 Toast.makeText(this, getString(R.string.editor_insert_product_successful),
                         Toast.LENGTH_SHORT).show();
+
             }
         } else {
             int rowsAffected = getContentResolver().update(mCurrentProductUri, values, null, null);
@@ -169,6 +186,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             }
         }
     }
+
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
@@ -276,7 +294,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         alertDialog.show();
     }
 
-
     private void showDeleteConfirmationDialog() {
         // Create an AlertDialog.Builder and set the message, and click listeners
         // for the positive and negative buttons on the dialog.
@@ -325,7 +342,9 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         switch (item.getItemId()) {
             case R.id.action_save:
                 saveProduct();
-                finish();
+                if (validProductData) {
+                    finish();
+                }
                 return true;
             case R.id.action_delete:
                 showDeleteConfirmationDialog();

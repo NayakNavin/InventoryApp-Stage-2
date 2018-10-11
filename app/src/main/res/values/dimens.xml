@@ -25,4 +25,10 @@
     <dimen name="height_99dp">99dp</dimen>
     <dimen name="width_60dp">60dp</dimen>
     <dimen name="height_50dp">50dp</dimen>
+    <dimen name="text_size_22sp">22sp</dimen>
+    <dimen name="text_size_18sp">18sp</dimen>
+    <dimen name="margin_20dp">20dp</dimen>
+    <dimen name="margin_96dp">96dp</dimen>
+    <dimen name="width_50dp">50dp</dimen>
+    <dimen name="height_40dp">40dp</dimen>
 </resources>

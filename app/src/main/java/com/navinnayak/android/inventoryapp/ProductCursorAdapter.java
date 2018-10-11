@@ -3,6 +3,7 @@ package com.navinnayak.android.inventoryapp;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
@@ -59,7 +60,7 @@ public class ProductCursorAdapter extends CursorAdapter {
      *                correct row.
      */
     @Override
-    public void bindView(View view, final Context context, final Cursor cursor) {
+    public void bindView(final View view, final Context context, final Cursor cursor) {
         // Get the current position of the cursor in order to set a TAG with it on the sell button
         final int position = cursor.getPosition();
 
@@ -68,9 +69,13 @@ public class ProductCursorAdapter extends CursorAdapter {
         TextView priceTextView = view.findViewById(R.id.unit_price_value);
         TextView quantityTextView = view.findViewById(R.id.stock_level_value);
         ImageView sellNowButtonImageView = view.findViewById(R.id.sell_button);
+        ImageView editButtonImageView = view.findViewById(R.id.edit_button);
 
         // Set a TAG on the sell button with current position of cursor
         sellNowButtonImageView.setTag(position);
+
+        // Set a TAG on the edit button with current position of cursor
+        editButtonImageView.setTag(position);
 
         // Find the columns of product attributes that we're interested in
         int nameColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_NAME);
@@ -117,6 +122,19 @@ public class ProductCursorAdapter extends CursorAdapter {
                     Toast.makeText(context, context.getString(R.string.catalog_sell_product_item_failed_stock_empty),
                             Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        editButtonImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(view.getContext(), EditorActivity.class);
+                Integer position = (Integer) v.getTag();
+                cursor.moveToPosition(position);
+                Long rowId = cursor.getLong(cursor.getColumnIndex(ProductEntry._ID));
+                Uri currentProductURI = ContentUris.withAppendedId(ProductEntry.CONTENT_URI, rowId);
+                intent.setData(currentProductURI);
+                context.startActivity(intent);
             }
         });
     }

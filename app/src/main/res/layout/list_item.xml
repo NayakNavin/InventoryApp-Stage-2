@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/list_item_height"
     android:minHeight="@dimen/list_item_height"
@@ -9,34 +10,42 @@
     android:paddingEnd="@dimen/margin_16dp"
     android:paddingRight="@dimen/margin_16dp">
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/text_view_height"
-        android:layout_marginTop="@dimen/margin_16dp"
-        android:layout_marginBottom="@dimen/margin_16dp"
-        android:gravity="bottom"
-        android:paddingStart="@dimen/list_view_margin"
-        android:paddingLeft="@dimen/list_view_margin"
-        android:textAppearance="?android:textAppearanceLarge"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textStyle="bold" />
+    <LinearLayout style="@style/LinearListStyle1">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_99dp"
-        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/text_view_height"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:layout_weight="4"
+            android:paddingStart="@dimen/list_view_margin"
+            android:paddingLeft="@dimen/list_view_margin"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
+            tools:text="@tools:sample/cities" />
+
+        <ImageView
+            android:id="@+id/edit_button"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_50dp"
+            android:layout_marginTop="@dimen/margin_8dp"
+            android:layout_weight="1"
+            android:focusable="false"
+            android:src="@drawable/icons8_pencil_96" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/LinearListStyle1">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2.5"
-            android:orientation="vertical">
+            style="@style/LinearListStyle2"
+            android:layout_weight="2.5">
 
             <TextView
                 android:id="@+id/unit_price_label"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/text_view_height"
+                android:layout_marginBottom="@dimen/margin_8dp"
                 android:gravity="center_vertical"
                 android:paddingStart="@dimen/list_view_margin"
                 android:paddingLeft="@dimen/list_view_margin"
@@ -57,39 +66,39 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:orientation="vertical">
+            style="@style/LinearListStyle2"
+            android:layout_weight="2">
 
             <TextView
                 android:id="@+id/unit_price_value"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/text_view_height"
+                android:layout_marginBottom="@dimen/margin_8dp"
                 android:gravity="center_vertical"
                 android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                tools:text="@tools:sample/cities" />
 
             <TextView
                 android:id="@+id/stock_level_value"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/text_view_height"
                 android:gravity="center_vertical"
-                android:textAppearance="?android:textAppearanceMedium" />
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textStyle="bold"
+                tools:text="@tools:sample/us_zipcodes" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            style="@style/LinearListStyle2"
+            android:layout_weight="1">
 
             <ImageView
                 android:id="@+id/sell_button"
                 android:layout_width="@dimen/width_60dp"
                 android:layout_height="@dimen/height_50dp"
                 android:layout_gravity="start"
-                android:layout_marginTop="@dimen/margin_8dp"
+                android:layout_marginTop="@dimen/margin_16dp"
                 android:layout_marginBottom="@dimen/margin_16dp"
                 android:focusable="false"
                 android:src="@drawable/ic_shoppin_cart" />
